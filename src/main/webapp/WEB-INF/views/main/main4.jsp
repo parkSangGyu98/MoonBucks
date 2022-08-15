@@ -52,12 +52,12 @@
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 		<header class="mb-auto">
 			<div style="margin-left: -180px;">
-				<h3 class="float-md-start mb-0">Java Cafe</h3>
+				<h3 class="float-md-start mb-0">MoonBucks</h3>
 				<nav style="margin-right: -180px;"
 					class="nav nav-masthead justify-content-center float-md-end">
 					<a class="nav-link active" aria-current="page"
-						href="/javaCafe/controller/home">Home</a> <a class="nav-link"
-						href="/javaCafe/controller/admin">Admin</a>
+						href="/MoonBucks/controller/home">Home</a> <a class="nav-link"
+						href="/MoonBucks/controller/admin">Admin</a>
 				</nav>
 			</div>
 		</header>
@@ -74,7 +74,7 @@
 						<div
 							style="display: flex; justify-content: center; line-height: 30px; height: 50px;"
 							class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-							<a href="/javaCafe/controller/main3"
+							<a href="/MoonBucks/controller/main3"
 								class="nav-link hoverStyle">뒤로가기</a>
 						</div>
 					</div>
