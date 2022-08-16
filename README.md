@@ -125,11 +125,76 @@
 					</c:if>
 				</c:forEach>
 
+	3. 성공화면
+	
+	![image](https://user-images.githubusercontent.com/103983349/184813020-b9c36740-1a56-4e25-b639-ee8a4cf4eae5.png)
+	![image](https://user-images.githubusercontent.com/103983349/184813051-9179d7f3-aafa-4d05-9927-431d7cece98b.png)
+
+
 ### 장바구니
 +  추가주문 시 기존 주문내역 포함한 내역 수집
-   1. ㅇㅋㅇㅁㅇㄴ
+   1. 현재 카테고리를 선택하는 화면이 첫 주문인지 추가 주문인지를 확인하기 위한 전역변수 num 을 선언합니다.
+   2. 첫 주문이라면, 주문내역을 담을 "order"라는 세션을 생성해줍니다.
+   3. 추가 주문이라면, "order" 세션을 불러와 리스트를 선언해준 뒤 그 리스트에 추가 주문 내역을 넣어줍니다.
+   					
+				   MainController 일부
+				   
+				   @PostMapping("/controller/main")
+					public String buy(Category category, Model model, HttpSession session, HttpServletRequest request) {
+						session = request.getSession();
+						model.addAttribute("menuList", menuService.getMenu(category.getName()));
+						session.setAttribute("categoryName", category.getName());
+
+						if(num != 0) {
+							ArrayList<Menu> list = (ArrayList)session.getAttribute("order");
+							Menu menu = new Menu();
+							menu.setCategoryName(category.getName());
+							list.add(num, menu);
+							session.setAttribute("order", list);
+						}else {
+							List<Menu> list = new ArrayList<Menu>();
+							Menu menu = new Menu();
+							menu.setCategoryName(category.getName());
+							list.add(num, menu);
+							session.setAttribute("order", list);
+						}
+						return "redirect:/controller/main2";
+					}
+
+	4. 추가 주문 클릭시 num의 카운트가 올라가고 몇번째 주문인지 확인할 수 있습니다.
+	
+					MainController 일부
+					
+					@PostMapping("/controller/main6")
+					public String buy6(Menu menu, Model model, HttpSession session) {
+						session.setAttribute("menuTake", menu.getTake());
+						num++;
+						return "redirect:/controller/main";
+					}
+	
+	6. 주문선택이 끝나면 최종 주문 내역인 "order"세션을 리스트형태로 jsp에 넘겨주고 최종 주문내역을 보여줍니다.
+	7. 동시에, for문을 이용해 주문 내역의 수량을 가져와 재고에서 차감시킵니다.
+
+					MainController 일부
+					
+					@PostMapping("/controller/goPayment")
+					public String goPayment(HttpSession session) {
+						ArrayList<Menu> list = (ArrayList)session.getAttribute("order");
+						for (int i = 0; i < list.size(); i++) {
+							menuService.deleteInventory(list.get(i).getName(), list.get(i).getCount());
+						}
+						return "redirect:/controller/payment";
+					}
 
 
+					@GetMapping("/controller/payment")
+					public String paymentForm( Model model, HttpSession session) {
+						ArrayList<Menu> list = (ArrayList)session.getAttribute("order");
+						model.addAttribute("order", list);
+						return "main/payment";
+					}
+
+	
 
 ## 구현 화면
   ### 클릭 시 주문 시작
