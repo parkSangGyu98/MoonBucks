@@ -236,7 +236,7 @@
   ![image](https://user-images.githubusercontent.com/103983349/184804932-69d4d4b7-be1c-46c6-baa8-7d41e9e43e2b.png)
 
  
-  ## 참고 문헌
-  1. 프로젝트에 사용된 카테고리 및 메뉴 등 이미지 -> https://www.starbucks.co.kr/index.do
-  2. 이미지업로드 오픈소스 참고 블로그 -> https://devofroad.tistory.com/m/45
+  #### 참고 문헌
+  + 프로젝트에 사용된 카테고리 및 메뉴 등 이미지 -> https://www.starbucks.co.kr/index.do
+  + 이미지업로드 오픈소스 참고 블로그 -> https://devofroad.tistory.com/m/45
   
