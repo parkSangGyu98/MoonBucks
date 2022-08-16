@@ -129,8 +129,7 @@
 
 	3. 성공화면
 	
-	![image](https://user-images.githubusercontent.com/103983349/184813020-b9c36740-1a56-4e25-b639-ee8a4cf4eae5.png)
-	![image](https://user-images.githubusercontent.com/103983349/184813051-9179d7f3-aafa-4d05-9927-431d7cece98b.png)
+	![image](https://user-images.githubusercontent.com/103983349/184819268-7d8e4cbd-78e9-4d58-85f0-9ffa2184b7ed.png)
 
 
 ### 장바구니
