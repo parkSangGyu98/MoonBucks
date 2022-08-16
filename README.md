@@ -25,6 +25,54 @@
   + 실시간 주문 내역 수집
   + 추가주문 시 기존 주문내역 포함한 내역 수집
   
+ ## 일부 코드
+  ### 관리자
+   + 카테고리 추가, 삭제
+ 
+				// 카테고리 추가 시 이미지 업로드
+				@PostMapping("/controller/add_category")
+				public String addCategory(@RequestParam("file") MultipartFile file,
+										Category category, Model model) {
+
+				String fileRealName = file.getOriginalFilename(); // 파일명을 얻어낼 수 있는 메소드
+				long size = file.getSize();
+				if(!category.getName().equals("")) {
+					if(fileRealName != "") {
+				System.out.println("파일명 : " + fileRealName);
+				System.out.println("용량크기(byte) : " + size);
+				String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+				String uploadFolder = "C:\\Users\\psg\\NCS\\backend\\javaCafe\\src\\main\\webapp\\resources\\img\\category";
+
+
+				UUID uuid = UUID.randomUUID();
+				System.out.println(uuid.toString());
+				String[] uuids = uuid.toString().split("-");
+
+				String uniqueName = uuids[0];
+				System.out.println("생성된 고유문자열 : " + uniqueName);
+				System.out.println("확장자명 : " + fileExtension);
+
+				File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
+				try {
+					file.transferTo(saveFile); // 실제 파일 저장메서드
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+					categoryService.addCategory(category.getName(), uniqueName);
+					model.addAttribute("category", category);
+					
+					return "redirect:/controller/admin";
+				}else {
+					model.addAttribute("msg", "올바른 사진을 선택해 주세요.");
+					return "error/error";
+				}
+				}else {
+					model.addAttribute("msg","카테고리명을 입력해 주세요.");
+					return "error/error";
+				}
 
 ## 구현 화면
   ### 클릭 시 주문 시작
@@ -65,55 +113,7 @@
   ![image](https://user-images.githubusercontent.com/103983349/184804140-4fa39ba3-4f99-4635-989a-aaff3761b253.png)
   ![image](https://user-images.githubusercontent.com/103983349/184804932-69d4d4b7-be1c-46c6-baa8-7d41e9e43e2b.png)
 
-  ## 구현 기능에 관한 일부 코드
-  ### 관리자
-  + 카테고리 추가, 삭제
  
-		// 카테고리 추가 시 이미지 업로드
-		@PostMapping("/controller/add_category")
-		public String addCategory(@RequestParam("file") MultipartFile file,
-								Category category, Model model) {
-		
-		String fileRealName = file.getOriginalFilename(); // 파일명을 얻어낼 수 있는 메소드
-		long size = file.getSize();
-		if(!category.getName().equals("")) {
-			if(fileRealName != "") {
-				System.out.println("파일명 : " + fileRealName);
-				System.out.println("용량크기(byte) : " + size);
-				String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-				String uploadFolder = "C:\\Users\\psg\\NCS\\backend\\javaCafe\\src\\main\\webapp\\resources\\img\\category";
-
-
-				UUID uuid = UUID.randomUUID();
-				System.out.println(uuid.toString());
-				String[] uuids = uuid.toString().split("-");
-
-				String uniqueName = uuids[0];
-				System.out.println("생성된 고유문자열 : " + uniqueName);
-				System.out.println("확장자명 : " + fileExtension);
-
-				File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
-				try {
-					file.transferTo(saveFile); // 실제 파일 저장메서드
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				
-					categoryService.addCategory(category.getName(), uniqueName);
-					model.addAttribute("category", category);
-					
-					return "redirect:/controller/admin";
-				}else {
-					model.addAttribute("msg", "올바른 사진을 선택해 주세요.");
-					return "error/error";
-				}
-		}else {
-			model.addAttribute("msg","카테고리명을 입력해 주세요.");
-			return "error/error";
-		}
-  
   
 
   
