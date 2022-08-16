@@ -55,3 +55,19 @@
 
   #### 주문하기
   ![image](https://user-images.githubusercontent.com/103983349/184803644-052a3834-d3ae-4b29-86c5-2df2cc1de3da.png)
+
+  #### 관리자 페이지 - 카테고리 (추가, 사진 수정, 삭제)
+  ![image](https://user-images.githubusercontent.com/103983349/184803892-c8d2007f-6bad-4c01-a602-c33a986833d6.png)
+
+  #### 관리자 페이지 - 메뉴 (카테고리별 메뉴 조회, 추가, 수정, 삭제)
+  ![image](https://user-images.githubusercontent.com/103983349/184804045-919f45ef-6be2-478d-9e28-0264cc554a37.png)
+  ![image](https://user-images.githubusercontent.com/103983349/184804058-a0a0d7f9-f7a4-4bab-b4bc-42405e1dcc96.png)
+  
+  #### 관리자 페이지 - 재고 (추가, 차감)
+  ![image](https://user-images.githubusercontent.com/103983349/184804140-4fa39ba3-4f99-4635-989a-aaff3761b253.png)
+  ![image](https://user-images.githubusercontent.com/103983349/184804177-103d564c-34b8-4170-8741-526f81a3aad9.png)
+
+
+
+
+  
