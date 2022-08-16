@@ -1,6 +1,6 @@
 # MoonBucks
  + 온라인 카페 키오스크형식의 개인프로젝트입니다.
- + 2022.8.1 ~ 2022.8.6
+ + 2022.8.1 ~ 2022.8.6 (6일)
 ## 사용한 기술
 + Java
 + Spring flatform
@@ -31,52 +31,69 @@
   	 1. 가지고 온 파일의 이름을 고유번호 받아서 DB에 저장하고 지정한 경로에 파일을 복사가 됩니다.
   	 2. 저장되있는 고유번호를 가지고와 이미지를 띄워줍니다.
  
-				// 카테고리 추가 시 이미지 업로드
-				@PostMapping("/controller/add_category")
-				public String addCategory(@RequestParam("file") MultipartFile file,
-										Category category, Model model) {
+			// 카테고리 추가 시 이미지 업로드
+			@PostMapping("/controller/add_category")
+			public String addCategory(@RequestParam("file") MultipartFile file,
+									Category category, Model model) {
+			String fileRealName = file.getOriginalFilename(); // 파일명을 얻어낼 수 있는 메소드
+			long size = file.getSize();
+			if(!category.getName().equals("")) {
+				if(fileRealName != "") {
+			System.out.println("파일명 : " + fileRealName);
+			System.out.println("용량크기(byte) : " + size);
+			String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+			String uploadFolder = "C:\\Users\\psg\\NCS\\backend\\javaCafe\\src\\main\\webapp\\resources\\img\\category";
 
-				String fileRealName = file.getOriginalFilename(); // 파일명을 얻어낼 수 있는 메소드
-				long size = file.getSize();
-				if(!category.getName().equals("")) {
-					if(fileRealName != "") {
-				System.out.println("파일명 : " + fileRealName);
-				System.out.println("용량크기(byte) : " + size);
-				String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-				String uploadFolder = "C:\\Users\\psg\\NCS\\backend\\javaCafe\\src\\main\\webapp\\resources\\img\\category";
+			UUID uuid = UUID.randomUUID();
+			System.out.println(uuid.toString());
+			String[] uuids = uuid.toString().split("-");
 
+			String uniqueName = uuids[0];
+			System.out.println("생성된 고유문자열 : " + uniqueName);
+			System.out.println("확장자명 : " + fileExtension);
 
-				UUID uuid = UUID.randomUUID();
-				System.out.println(uuid.toString());
-				String[] uuids = uuid.toString().split("-");
-
-				String uniqueName = uuids[0];
-				System.out.println("생성된 고유문자열 : " + uniqueName);
-				System.out.println("확장자명 : " + fileExtension);
-
-				File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
-				try {
-					file.transferTo(saveFile); // 실제 파일 저장메서드
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
+			try {
+				file.transferTo(saveFile); // 실제 파일 저장메서드
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 				
-					categoryService.addCategory(category.getName(), uniqueName);
-					model.addAttribute("category", category);
+				categoryService.addCategory(category.getName(), uniqueName);
+				model.addAttribute("category", category);
 					
-					return "redirect:/controller/admin";
-				}else {
-					model.addAttribute("msg", "올바른 사진을 선택해 주세요.");
-					return "error/error";
-				}
-				}else {
-					model.addAttribute("msg","카테고리명을 입력해 주세요.");
-					return "error/error";
-				}
+				return "redirect:/controller/admin";
+			}else {
+				model.addAttribute("msg", "올바른 사진을 선택해 주세요.");
+				return "error/error";
+			}
+			}else {
+				model.addAttribute("msg","카테고리명을 입력해 주세요.");
+				return "error/error";
+			}
 
-+ 카테고리 이미지 수정
++ 메뉴 수정
+   1. 수정 전 메뉴명, 수정 후 메뉴명, 수정 할 가격을 받아와 유효성 검사
+   2. 수정 전 메뉴명이 "unknown"이 아니면서 수정 후의 메뉴명이 공백이 아닐 시 DB정보 수정
+   3. 가격부분의 유효성검사는 jsp에 input박스 옵션을 이용하였습니다.
+ 
+			@PostMapping("controller/updateMenu")
+			public String updateMenu(String prevName, String afterName, long afterPrice, Model model) {
+				if(!prevName.equals("unknown")) {
+					if(!afterName.equals("")) {
+						menuService.updateMenu(prevName, afterName, afterPrice);
+						return "redirect:/controller/main";
+					}else {
+						model.addAttribute("msg", "변경될 메뉴를 선택해 주세요.");
+						return "error/error";
+					}
+				}else {
+					model.addAttribute("msg", "변경할 메뉴를 선택해 주세요.");
+					return "error/error"; 
+				}
+			}
 
 
 ## 구현 화면
