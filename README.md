@@ -69,7 +69,7 @@
   ### 관리자
   + 카테고리 추가, 삭제
  
- `		// 카테고리 추가 시 이미지 업로드
+		// 카테고리 추가 시 이미지 업로드
 		@PostMapping("/controller/add_category")
 		public String addCategory(@RequestParam("file") MultipartFile file,
 								Category category, Model model) {
