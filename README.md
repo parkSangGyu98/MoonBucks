@@ -221,6 +221,7 @@
   ![image](https://user-images.githubusercontent.com/103983349/184803434-655a8d56-f1aa-4989-acd6-b04c3617de22.png)
   
   ### 더 고르기
+  + 기존에 주문했던 내역을 유지한 채 카테고리 선택화면으로 갑니다.
   ![image](https://user-images.githubusercontent.com/103983349/184803585-4dd265c5-269a-42ae-97cc-348ccf9a7e3c.png)
 
   ### 주문하기
