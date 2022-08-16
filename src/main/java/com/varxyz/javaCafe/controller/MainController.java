@@ -160,7 +160,7 @@ public class MainController {
 		session.setAttribute("order", list);
 		return "redirect:/controller/main6";
 	}
-
+	
 	
 	@GetMapping("/controller/main6")
 	public String buy6Form(Model model, HttpSession session) {
@@ -188,7 +188,6 @@ public class MainController {
 	@GetMapping("/controller/payment")
 	public String paymentForm( Model model, HttpSession session) {
 		ArrayList<Menu> list = (ArrayList)session.getAttribute("order");
-		
 		model.addAttribute("order", list);
 		return "main/payment";
 	}

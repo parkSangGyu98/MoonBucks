@@ -49,7 +49,6 @@ public class AdminController {
 		}
 		model.addAttribute("msg", "삭제할 메뉴를 선택해 주세요.");
 		return "error/error";
-
 	}
 
 	@PostMapping("controller/readMenu")
@@ -62,7 +61,6 @@ public class AdminController {
 		}
 		model.addAttribute("msg", "카테고리를 선택해 주세요.");
 		return "error/error";
-
 	}
 
 	@GetMapping("controller/successReadMenu")

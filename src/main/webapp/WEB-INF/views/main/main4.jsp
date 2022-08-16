@@ -43,7 +43,7 @@
 <link href="../resources/css/cover.css" rel="stylesheet">
 </head>
 <body class="d-flex h-100 text-center text-white bg-dark">
-	<script>
+	<script type="text/javascript">
 		function next_form() {
 			document.getElementById('aTag').submit();
 		}
@@ -63,19 +63,27 @@
 		</header>
 		<%-- container 영역 --%>
 		<main style="margin-left: -180px; width: 1000px;" class="container">
-			<form id="aTag" action="main4" method="post" style="margin:0;">
+			<form id="aTag" action="main4" method="post" style="margin: 0;">
 				<h1 style="margin-top: 30px;">수량</h1>
 				<div class="row mb-2">
 					<input class="styleman" type="number" min="1" value="1" required
 						name="count">
+					<div class="input_wrap" style="margin-bottom: 30px;">
+						<input
+							style="margin-left: 20px; background: gray; color: white; width: 50px; border: 1px solid white; border-radius: 25px; margin-right: 30px; margin-left: 0;"
+							class="input_style" type=button value="-"
+							onClick="javascript:this.form.count.value--;"> <input
+							style="background: gray; color: white; width: 50px; border: 1px solid white; border-radius: 25px;"
+							class="input_style" type=button value="+"
+							onClick="javascript:this.form.count.value++;">
+					</div>
 				</div>
 				<div class="row mb-2">
 					<div class="col-md-6">
 						<div
 							style="display: flex; justify-content: center; line-height: 30px; height: 50px;"
 							class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-							<a href="/MoonBucks/controller/main3"
-								class="nav-link hoverStyle">뒤로가기</a>
+							<a href="/MoonBucks/controller/main3" class="nav-link hoverStyle">뒤로가기</a>
 						</div>
 					</div>
 					<div class="col-md-6">

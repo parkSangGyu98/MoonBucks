@@ -46,6 +46,7 @@
 	<script>
 		function next_form() {
 			document.getElementById('aTag').submit();
+			
 		}
 	</script>
 	<%-- header 영역 --%>
