@@ -67,17 +67,6 @@
 		<%-- container 영역 --%>
 		<main style="margin-left: -180px; width: 1000px;" class="container">
 			<div style="margin-bottom: 150px;">
-				<form id="aTag" action="add_category" method="post">
-					<h1 style="margin-top: 30px;">Inventory Management</h1>
-					<button class="button-style">재고관리</button>
-				</form>
-
-
-				<div style="margin-top: 50px;">
-					---------------------------------------------------------------------------------
-				</div>
-			</div>
-			<div style="margin-bottom: 150px;">
 				<form id="aTag" action="add_category" method="post"
 					enctype="multipart/form-data">
 					<h1 style="margin-top: 30px;">Add Category</h1>
@@ -143,12 +132,12 @@
 							name="name">
 					</div>
 					<div class="row mb-2">
-						<input class="styleman moreStyle" placeholder="메뉴 가격" type="number" min="0" required
-							name="price">
+						<input class="styleman moreStyle" placeholder="메뉴 가격"
+							type="number" min="0" required name="price">
 					</div>
 					<div class="row mb-2">
-						<input class="styleman moreStyle" placeholder="메뉴 입고량" type="number" min="0" required
-							name="quantity">
+						<input class="styleman moreStyle" placeholder="메뉴 입고량"
+							type="number" min="0" required name="quantity">
 					</div>
 					<div class="row mb-2">
 						<select style="text-align: center;" name="categoryName">
@@ -179,8 +168,8 @@
 							type="text" name="afterName">
 					</div>
 					<div class="row mb-2">
-						<input class="styleman moreStyle" placeholder="변경 후 가격" type="number" min="0" required
-							name="afterPrice">
+						<input class="styleman moreStyle" placeholder="변경 후 가격"
+							type="number" min="0" required name="afterPrice">
 					</div>
 					<button class="button-style">Update</button>
 				</form>
@@ -198,6 +187,41 @@
 					<button class="button-style">Delete</button>
 				</form>
 			</div>
+			<div style="margin-top: 150px;">
+				---------------------------------------------------------------------------------
+			</div>
+			<form id="aTag" action="addInventory" method="post">
+				<h1 style="margin-top: 30px;">Add Inventory</h1>
+				<div class="row mb-2">
+					<select style="text-align: center; width: 450px;" name="name">
+						<option value="unknown">메뉴명</option>
+						<c:forEach var="x" items="${menu}">
+							<option value="${x.name}">${x.name}- 현재고 : ${x.quantity}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="row mb-2">
+					<input class="styleman moreStyle" placeholder="수량" type="number"
+						min="0" required name="quantity">
+				</div>
+				<button class="button-style">Add</button>
+			</form>
+			<form id="aTag" action="deleteInventory" method="post">
+				<h1 style="margin-top: 30px;">Delete Inventory</h1>
+				<div class="row mb-2">
+					<select style="text-align: center; width: 450px;" name="name">
+						<option value="unknown">메뉴명</option>
+						<c:forEach var="x" items="${menu}">
+							<option value="${x.name}">${x.name}- 현재고 : ${x.quantity}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="row mb-2">
+					<input class="styleman moreStyle" placeholder="수량" type="number"
+						min="0" required name="quantity">
+				</div>
+				<button class="button-style">Delete</button>
+			</form>
 
 		</main>
 

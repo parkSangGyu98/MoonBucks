@@ -42,4 +42,12 @@ public class MenuService {
 		return dao.getAllMenu();
 	}
 	
+	public void addInventory(String name, long quantity) {
+		dao.addInventory(name, quantity);
+	}
+	
+	public void deleteInventory(String name, long quantity) {
+		dao.deleteInventory(name, quantity);
+	}
+	
 }

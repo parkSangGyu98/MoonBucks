@@ -176,7 +176,11 @@ public class MainController {
 	}
 	
 	@PostMapping("/controller/goPayment")
-	public String goPayment() {
+	public String goPayment(HttpSession session) {
+		ArrayList<Menu> list = (ArrayList)session.getAttribute("order");
+		for (int i = 0; i < list.size(); i++) {
+			menuService.deleteInventory(list.get(i).getName(), list.get(i).getCount());
+		}
 		return "redirect:/controller/payment";
 	}
 	

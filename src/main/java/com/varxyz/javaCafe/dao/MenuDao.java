@@ -50,4 +50,15 @@ public class MenuDao {
 		String sql = "SELECT * FROM Menu";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Menu>(Menu.class));
 	}
+	
+	public void addInventory(String name, long quantity) {
+		String sql = "UPDATE Menu SET quantity = ? WHERE name = ?";
+		jdbcTemplate.update(sql, getMenuByName(name).get(0).getQuantity() + quantity, name);
+	}
+	
+	public void deleteInventory(String name, long quantity) {
+		String sql = "UPDATE Menu SET quantity = ? WHERE name = ?";
+		jdbcTemplate.update(sql, getMenuByName(name).get(0).getQuantity() - quantity, name);
+	}
+	
 }

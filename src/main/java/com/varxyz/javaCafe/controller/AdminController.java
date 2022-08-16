@@ -131,9 +131,33 @@ public class AdminController {
 			}
 		}else {
 			model.addAttribute("msg", "변경할 메뉴를 선택해 주세요.");
-			return "error/error";
+			return "error/error"; 
 		}
-		
+	}
+	
+	@PostMapping("controller/addInventory")
+	public String addInventory(String name, long quantity, Model model) {
+		if(!name.equals("unknown")) {
+			menuService.addInventory(name, quantity);
+			return "redirect:/controller/admin";
+		}
+		model.addAttribute("msg", "메뉴를 선택해 주세요.");
+		return "error/error";
+	}
+	
+	@PostMapping("controller/deleteInventory")
+	public String deleteInventory(String name, long quantity, Model model) {
+		if(!name.equals("unknown")) {
+			if(menuService.getMenuByName(name).get(0).getQuantity() - quantity >= 0 ) {
+				menuService.deleteInventory(name, quantity);
+				return "redirect:/controller/admin";
+			}else {
+				model.addAttribute("msg", "재고는 음수가 될 수 없습니다.");
+				return "error/error";
+			}
+		}
+		model.addAttribute("msg", "메뉴를 선택해 주세요.");
+		return "error/error";
 	}
 
 }
