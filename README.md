@@ -67,7 +67,8 @@
   ![image](https://user-images.githubusercontent.com/103983349/184804140-4fa39ba3-4f99-4635-989a-aaff3761b253.png)
   ![image](https://user-images.githubusercontent.com/103983349/184804177-103d564c-34b8-4170-8741-526f81a3aad9.png)
 
-
-
+  ## 구현 기능에 관한 일부 코드
+  #### 카테고리 추가, 삭제
+  
 
   
