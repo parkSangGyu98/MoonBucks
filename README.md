@@ -27,10 +27,12 @@
   
  ## 주요 코드
   ### 관리자
-   + 카테고리 추가, 삭제
+   + 카테고리 추가
   	 1. 가지고 온 파일의 이름을 고유번호 받아서 DB에 저장하고 지정한 경로에 파일을 복사가 됩니다.
   	 2. 저장되있는 고유번호를 가지고와 이미지를 띄워줍니다.
- 
+	 
+	 		AddCategoryController 일부
+			
 			// 카테고리 추가 시 이미지 업로드
 			@PostMapping("/controller/add_category")
 			public String addCategory(@RequestParam("file") MultipartFile file,
@@ -78,7 +80,9 @@
    1. 수정 전 메뉴명, 수정 후 메뉴명, 수정 할 가격을 받아와 유효성 검사
    2. 수정 전 메뉴명이 "unknown"이 아니면서 수정 후의 메뉴명이 공백이 아닐 시 DB정보 수정
    3. 가격부분의 유효성검사는 jsp에 input박스 옵션을 이용하였습니다.
- 
+   
+  			AdminController 일부
+			
 			@PostMapping("controller/updateMenu")
 			public String updateMenu(String prevName, String afterName, long afterPrice, Model model) {
 				if(!prevName.equals("unknown")) {
@@ -94,6 +98,37 @@
 					return "error/error"; 
 				}
 			}
+			
+### 사용자		
++  최종 주문내역 조회
+   1. session을 이용해 장바구니 내역을 리스트에 축적시키고 model로 jsp에 넘겨줍니다.
+   2. 넘겨받은 리스트를 forEach문을 이용해 사진 및 모든 주문 내역을 가져옵니다.
+   			
+			   payment.jsp 일부
+				
+			   <c:forEach var="item" items="${order}" varStatus="status">
+				<c:if test="${order != null}">
+					<h3 style="margin-top: 80px;">${status.index+1}</h3>
+						<img style="height: 130px;"
+							src="../resources/img/menu/${item.picture}.jpg">
+							<li style="height: 50px; line-height: 100px;">카테고리명 :
+								${item.categoryName}</li>
+							<li style="height: 50px; line-height: 100px;">제품명 :
+								${item.name}</li>
+							<li style="height: 50px; line-height: 100px;">사이즈 :
+								${item.size}</li>
+							<li style="height: 50px; line-height: 100px;">수량 :
+								${item.count}</li>
+							<li style="height: 50px; line-height: 100px;">금액 :
+								${(item.price + item.sizePrice)* item.count}</li>
+							<li style="height: 50px; line-height: 100px;">${item.take}</li>
+					</c:if>
+				</c:forEach>
+
+### 장바구니
++  추가주문 시 기존 주문내역 포함한 내역 수집
+   1. ㅇㅋㅇㅁㅇㄴ
+
 
 
 ## 구현 화면
