@@ -69,9 +69,9 @@
   ### 관리자
   + 카테고리 추가, 삭제
  
-  // 카테고리 추가 시 이미지 업로드
-  @PostMapping("/controller/add_category")
- 	public String addCategory(@RequestParam("file") MultipartFile file,
+ `		// 카테고리 추가 시 이미지 업로드
+		@PostMapping("/controller/add_category")
+		public String addCategory(@RequestParam("file") MultipartFile file,
 								Category category, Model model) {
 		
 		String fileRealName = file.getOriginalFilename(); // 파일명을 얻어낼 수 있는 메소드
