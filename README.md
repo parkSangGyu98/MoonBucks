@@ -1,13 +1,11 @@
 # MoonBucks
-## 개요
 + 온라인 카페 키오스크형식의 개인프로젝트입니다.
-### 만든 목적
-ㅇㅇㅇㅇㅇ
-#### 일정
  + 2022.8.1 ~ 2022.8.6 (6일)
-## 사용한 기술
+## 사용한 기술 및 환경
++ Window
++ eclipse
 + Java
-+ Spring flatform
++ Spring
 + Jsp
 + MySQL
 + HTML/CSS3
