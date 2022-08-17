@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+body {
+	width: 100%;
+	height: auto;
+}
+
+.content-wrap {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 30px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.table {
+	width: 80%;
+    height: auto;
+}
+
+.table.table-bordered {
+	border: 1px solid black;
+}
+
+tr td {
+	height : 50px;
+	line-height : 50px;
+}
+
+tr td img {
+	height : 50px;
+	width : auto;
+}
+
+.table>:not(caption)>*>* {
+	padding:0;	
+}
+
+
+
+
+

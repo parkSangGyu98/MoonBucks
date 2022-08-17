@@ -157,5 +157,11 @@ public class AdminController {
 		model.addAttribute("msg", "메뉴를 선택해 주세요.");
 		return "error/error";
 	}
+	
+	@GetMapping("controller/inventoryManagement")
+	public String inventoryManagement(Model model) {
+		model.addAttribute("menuList", menuService.getAllMenu());
+		return "admin/inventoryManagement";
+	}
 
 }

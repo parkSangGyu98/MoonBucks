@@ -66,6 +66,13 @@
 		</header>
 		<%-- container 영역 --%>
 		<main style="margin-left: -180px; width: 1000px;" class="container">
+			<form id="aTag" action="inventoryManagement" method="get">
+				<h1 style="margin-top: 30px;">All Inventory Management</h1>
+				<button class="button-style">재고 관리</button>
+			</form>
+			<div style="margin-top: 150px;">
+				---------------------------------------------------------------------------------
+			</div>
 			<div style="margin-bottom: 150px;">
 				<form id="aTag" action="add_category" method="post"
 					enctype="multipart/form-data">
@@ -196,7 +203,7 @@
 					<select style="text-align: center; width: 450px;" name="name">
 						<option value="unknown">메뉴명</option>
 						<c:forEach var="x" items="${menu}">
-							<option value="${x.name}">${x.name}- 현재고 : ${x.quantity}</option>
+							<option value="${x.name}">${x.name}-현재고 : ${x.quantity}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -212,7 +219,7 @@
 					<select style="text-align: center; width: 450px;" name="name">
 						<option value="unknown">메뉴명</option>
 						<c:forEach var="x" items="${menu}">
-							<option value="${x.name}">${x.name}- 현재고 : ${x.quantity}</option>
+							<option value="${x.name}">${x.name}-현재고 : ${x.quantity}</option>
 						</c:forEach>
 					</select>
 				</div>
