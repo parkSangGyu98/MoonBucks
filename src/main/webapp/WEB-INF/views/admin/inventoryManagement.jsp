@@ -43,18 +43,30 @@
 </head>
 <body>
 	<script>
-		function next_form() {
-			document.getElementById('aTag').submit();
-		}
-		function next2_form() {
-			document.getElementById('aTag2').submit();
-		}
-	</script>
+	function chageSelectedValue() {
+	var yourTestSelect = document.getElementById("TestSelect");
+    
+	// select element에서 선택된 option의 value가 저장됩니다.   
+	var selectedValue = yourTestSelect.options[yourTestSelect.selectedIndex].value;
+    
+    document.getElementById("scriptTest").value = selectedValue;
+	}
+</script>
+
+
+
+
 	<%-- header 영역 --%>
-	<h1 style="text-align:center; margin-top: 50px;">재고 관리 페이지</h1>
+	<select id="TestSelect" name="SelectValue" onchange="chageSelectedValue()">
+		<option value="" selected disabled>카테고리명</option>
+		<c:forEach var="x" items="${cateList}" varStatus="status">
+			<option value="${x.name}">${x.name}</option>
+		</c:forEach>
+	</select>
+
 	<div class="content-wrap">
 		<%-- container 영역 --%>
-		<table class="table table-bordered">
+		<table id="example" class="table table-bordered">
 			<thead>
 				<tr>
 					<th scope="col"></th>
@@ -72,19 +84,27 @@
 						<th style="line-height: 50px;" scope="row">${status.index+1}</th>
 						<td><img class="manageImg"
 							src="../resources/img/menu/${menu.picture}.jpg"></td>
-						<td>${menu.categoryName}</td>
+							
+						<td><input id="scriptTest"></td>
+						
 						<td>${menu.name}</td>
 						<td>${menu.price}</td>
 						<td>${menu.quantity}</td>
-						<td><input style="height: 30px; width: 30px;">
-							<button style="height: 30px; width: 60px;">입고</button>
-							<button style="height: 30px; width: 60px;">출고</button></td>
+						<td
+							style="display: flex; justify-content: center; align-items: center;"><input
+							style="height: 30px; width: 50px; text-align: center;">
+							<button class="buttonStyle">입고</button>
+							<button class="buttonStyle">출고</button></td>
 					</tr>
 				</c:forEach>
-
 			</tbody>
 		</table>
 	</div>
+	<div class="aTagWrap">
+		<a class="aTagStyle" aria-current="page"
+			href='<c:url value="/controller/admin"/>'>뒤로가기</a>
+	</div>
+
 
 
 </body>
