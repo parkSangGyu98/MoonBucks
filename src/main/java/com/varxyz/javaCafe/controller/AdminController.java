@@ -160,6 +160,7 @@ public class AdminController {
 	
 	@GetMapping("controller/inventoryManagement")
 	public String inventoryManagement(Model model) {
+		model.addAttribute("cateList", categoryService.findAllCateName());
 		model.addAttribute("menuList", menuService.getAllMenu());
 		return "admin/inventoryManagement";
 	}
